@@ -2,6 +2,7 @@ from clases import Arquero, Guerrero, Mago, Vampiro, Clerigo
 from enemigos import enemigo_aleatorio
 from combate import turno_jugador, turno_enemigo
 from evento import evento_aleatorio
+import os
 
 def combate(jugador):
     enemigo = enemigo_aleatorio(jugador.nivel)
@@ -100,6 +101,7 @@ def main():
 
         else:
             print("Opción inválida")
+
 
 
 if __name__ == "__main__":
