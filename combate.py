@@ -32,11 +32,19 @@ def turno_jugador(jugador, enemigo):
 def turno_enemigo(jugador, enemigo, estado_jugador):
     print("\nTurno de", enemigo.nombre)
 
-    danio = calcular_danho(enemigo.ataque, jugador.defensa)
+    danho = calcular_danho(enemigo.ataque, jugador.defensa)
 
     if estado_jugador == "defensa":
-        danio = danio // 2
-        print("Tu defensa reduce el daño a", danio)
+        reducido = danho // 2
+        jugador.vida = jugador.vida - reducido
+        print("Bloqueas parte del ataque y solo recibes", reducido, "de daño")
 
-    jugador.vida = jugador.vida - danio
-    print(enemigo.nombre, "te hace", danio, "de daño")
+        contra = reducido // 2
+        enemigo.vida = enemigo.vida - contra
+        print("Devuelves", contra, "de daño a", enemigo.nombre)
+        return
+
+    jugador.vida = jugador.vida - danho
+    if jugador.vida < 0:
+        jugador.vida = 0
+    print(enemigo.nombre, "te hace", danho, "de daño")

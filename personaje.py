@@ -29,7 +29,7 @@ class Personaje:
             self.subir_nivel()
 
     def experiencia_necesaria(self):
-        return (self.nivel * 100)
+        return (self.nivel * 10)
 
     def subir_nivel(self):
         self.experiencia -= self.experiencia_necesaria()

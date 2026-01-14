@@ -27,7 +27,8 @@ def combate(jugador):
 
     if jugador.vida <= 0:
         print("\nHas sido derrotado...")
-        return False
+        print("Aquí termina tu aventura.")
+        exit()
 
     return True
 
@@ -88,7 +89,6 @@ def main():
 
         elif opcion == "3":
             personaje.mostrar_stats()
-            print("Oro:", personaje.oro)
 
         elif opcion == "0":
             print("¡Hasta la próxima aventura!")
