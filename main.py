@@ -1,4 +1,4 @@
-from clases import Arquero, Guerrero, Mago, Vampiro
+from clases import Arquero, Guerrero, Mago, Vampiro, Clerigo
 from enemigos import enemigo_aleatorio
 from combate import turno_jugador, turno_enemigo
 from evento import evento_aleatorio
@@ -39,6 +39,7 @@ def elegir_clase(nombre):
     print("2. Guerrero")
     print("3. Mago")
     print("4. Vampiro")
+    print("5. Clerigo")
 
     opcion = input("Opción: ")
 
@@ -53,6 +54,9 @@ def elegir_clase(nombre):
 
     if opcion == "4":
         return Vampiro(nombre)
+
+    if opcion == "5":
+        return Clerigo(nombre)
 
     print("Opción incorrecta")
     return None

@@ -15,3 +15,7 @@ class Mago(Personaje):
 class Vampiro(Personaje):
     def __init__(self, nombre):
         super().__init__(nombre, 150, 6,4)
+
+class Clerigo(Personaje):
+    def __init__(self, nombre):
+        super().__init__(nombre, 80, 12,15)
