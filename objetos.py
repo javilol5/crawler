@@ -1,4 +1,6 @@
 import random
+from contextlib import nullcontext
+
 
 class Objeto:
     def __init__(self, nombre, descripcion):
@@ -37,12 +39,18 @@ class Bomba(Objeto):
 
     def usar(self, personaje, enemigo):
         danho = 25
-        enemigo.vida -= danho
+        if enemigo is None:
+            personaje.vida -= danho
+            print("La bomba te hace", danho, "de daño")
+            if personaje.vida <= 0:
+                print("Has muerto por tu propia bomba...")
+        else:
+            enemigo.vida -= danho
 
-        if enemigo.vida < 0:
-            enemigo.vida = 0
+            if enemigo.vida < 0:
+                enemigo.vida = 0
 
-        print("La bomba hace", danho, "de daño")
+            print("La bomba hace", danho, "de daño")
 
 def objeto_aleatorio():
     tirada = random.randint(1, 100)
