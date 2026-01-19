@@ -6,6 +6,7 @@ class Personaje:
         self.ataque = ataque
         self.defensa = defensa
         self.oro = 100
+        self.inventario = []
         self.nivel = 1
         self.experiencia = 0
 
@@ -17,6 +18,7 @@ class Personaje:
         print("Ataque:", self.ataque)
         print("Defensa:", self.defensa)
         print("Oro:", self.oro)
+        print("Inventario:", self.inventario)
         print("Nivel:", self.nivel)
         print("EXP:", self.experiencia, "/", self.experiencia_necesaria())
 

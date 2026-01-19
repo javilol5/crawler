@@ -2,6 +2,7 @@ from clases import Arquero, Guerrero, Mago, Vampiro, Clerigo
 from enemigos import enemigo_aleatorio
 from combate import turno_jugador, turno_enemigo
 from evento import evento_aleatorio
+from objetos import Objeto, PocionVida,Bomba
 import os
 
 def combate(jugador):
@@ -95,6 +96,13 @@ def main():
         elif opcion == "3":
             personaje.mostrar_stats()
 
+        elif opcion == "4":
+            personaje.inventario.append(PocionVida())
+            print("Obtienes una Poción de vida")
+
+        elif opcion == "5":
+            usar_objeto(personaje)
+
         elif opcion == "0":
             print("¡Hasta la próxima aventura!")
             break
@@ -102,6 +110,31 @@ def main():
         else:
             print("Opción inválida")
 
+def usar_objeto(personaje):
+    if len(personaje.inventario) == 0:
+        print("Inventario vacío")
+        return
+
+    print("\nInventario:")
+    for i in range(len(personaje.inventario)):
+        objeto = personaje.inventario[i]
+        print(i + 1, "-", objeto.nombre)
+
+    opcion = input("Elige objeto (0 para cancelar): ")
+
+    if opcion == "0":
+        return
+
+    indice = int(opcion) - 1
+
+    if indice < 0 or indice >= len(personaje.inventario):
+        print("Opción inválida")
+        return
+
+    objeto = personaje.inventario[indice]
+    objeto.usar(personaje)
+
+    personaje.inventario.pop(indice)
 
 
 if __name__ == "__main__":
