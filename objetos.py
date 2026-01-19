@@ -1,3 +1,5 @@
+import random
+
 class Objeto:
     def __init__(self, nombre, descripcion):
         self.nombre = nombre
@@ -6,6 +8,10 @@ class Objeto:
     def usar(self, personaje):
         print("Este objeto no se puede usar")
 
+    def __str__(self):
+        return self.nombre + " " + self.descripcion
+
+
 class PocionVida(Objeto):
     def __init__(self):
         super().__init__(
@@ -13,14 +19,14 @@ class PocionVida(Objeto):
             "Recupera 30 puntos de vida"
         )
 
-    def usar(self, jugador):
-        curacion = 30
-        jugador.vida = jugador.vida + curacion
+    def usar(self, personaje):
 
-        if jugador.vida > jugador.vidamax:
-            jugador.vida = jugador.vidamax
+        personaje.vida += 30
 
-        print("Recuperas", curacion, "de vida")
+        if personaje.vida > personaje.vidamax:
+            personaje.vida = personaje.vidamax
+
+        print("Recuperas 30 de vida")
 
 class Bomba(Objeto):
     def __init__(self):
@@ -29,11 +35,19 @@ class Bomba(Objeto):
             "Hace 25 de daño al enemigo"
         )
 
-    def usar(self, jugador, enemigo):
-        danio = 25
-        enemigo.vida = enemigo.vida - danio
+    def usar(self, personaje, enemigo):
+        danho = 25
+        enemigo.vida -= danho
 
         if enemigo.vida < 0:
             enemigo.vida = 0
 
-        print("La bomba hace", danio, "de daño")
+        print("La bomba hace", danho, "de daño")
+
+def objeto_aleatorio():
+    tirada = random.randint(1, 100)
+    if tirada <= 50:
+        return PocionVida()
+
+    else:
+        return Bomba()

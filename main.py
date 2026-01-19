@@ -2,8 +2,7 @@ from clases import Arquero, Guerrero, Mago, Vampiro, Clerigo
 from enemigos import enemigo_aleatorio
 from combate import turno_jugador, turno_enemigo
 from evento import evento_aleatorio
-from objetos import Objeto, PocionVida,Bomba
-import os
+from objetos import Objeto,objeto_aleatorio
 
 def combate(jugador):
     enemigo = enemigo_aleatorio(jugador.nivel)
@@ -33,6 +32,17 @@ def combate(jugador):
         exit()
 
     return True
+
+class Botin():
+    def __init__(self):
+        super().__init__("Encuentras algo tirado en el suelo...")
+
+    def ejecutar(self, jugador):
+        print(self.descripcion)
+
+        objeto = objeto_aleatorio()
+        jugador.inventario.append(objeto)
+        print("Obtienes:", objeto.nombre)
 
 
 def elegir_clase(nombre):
@@ -97,8 +107,8 @@ def main():
             personaje.mostrar_stats()
 
         elif opcion == "4":
-            personaje.inventario.append(PocionVida())
-            print("Obtienes una Poción de vida")
+            personaje.inventario.append(objeto_aleatorio())
+            print("Obtienes" ,objeto_aleatorio())
 
         elif opcion == "5":
             usar_objeto(personaje)
@@ -139,3 +149,5 @@ def usar_objeto(personaje):
 
 if __name__ == "__main__":
     main()
+
+print("Objeto generado:", objeto.__class__.__name__)
